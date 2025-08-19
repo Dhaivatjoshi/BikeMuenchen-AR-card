@@ -1,6 +1,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <style>
@@ -138,6 +140,25 @@
             id="icon-youtube"
             src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/Youtube.png?v=1745603571708"
           />
+          <img
+            id="icon-left"
+            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/left.png?v=1745755923957"
+          />
+          <img
+            id="icon-right"
+            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/right.png?v=1745755928070"
+          />
+
+          <video
+            id="card-video"
+            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/BM%20LOGO%20ANIMATION%202.mp4?v=1748882372814"
+            autoplay
+            loop
+            muted
+            playsinline
+            crossorigin="anonymous"
+            webkit-playsinline
+          ></video>
         </a-assets>
 
         <a-camera
@@ -148,15 +169,35 @@
         >
         </a-camera>
 
-        <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
-          <!-- Business card plane -->
-          <a-plane
+        <a-entity id="mytarget" mindar-image-target="targetIndex: 0" mytarget>
+
+          <!--           <a-plane
             src="#card"
             position="0 0 0.001"
             height="0.552"
             width="1"
             rotation="0 0 0"
-          ></a-plane>
+          ></a-plane> -->
+          <!--           <a-video
+            src="#card-video"
+            position="0 0 0.001"
+            height="0.552"
+            width="1"
+            rotation="0 0 0"
+            autoplay
+            loop="true"
+            muted
+            playsinline
+          ></a-video> -->
+
+          <a-image
+            id="gif-display"
+            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/BM%20LOGO%20ANIMATION%202.gif?v=1749422153797"
+            position="0 0 0.001"
+            height="0.552"
+            width="1"
+            visible="true"
+          ></a-image>
 
           <!-- Dashed shader plane -->
           <a-plane
@@ -166,58 +207,6 @@
             rotation="0 0 0"
             dashed-border="color: #00FFAA"
           ></a-plane>
-          <!--           <a-plane
-            id="dynamic-plane"
-            position="0 0.326 0.001"
-            width="1"
-            height="0.552"
-            material="color: #0000FF; opacity: 1"
-          ></a-plane> -->
-
-          <a-image
-            id="dynamic-plane"
-            src="#card"
-            position="0 0.326 0.001"
-            height="0.552"
-            width="1"
-            material="opacity: 1"
-          ></a-image>
-
-          <!-- firecracker animation -->
-
-          <!--         <a-entity id="confetti" position="0 0.1 0">
-          <a-plane
-            color="#FFC107"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: -0.3 1 -0.1; dur: 800; easing: easeOutCubic; loop: true; delay: 0;"
-          ></a-plane>
-          <a-plane
-            color="#FF4081"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0.4 1 -0.2; dur: 900; easing: easeOutCubic; loop: true; delay: 200;"
-          ></a-plane>
-          <a-plane
-            color="#4CAF50"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0.2 1 0.3; dur: 1000; easing: easeOutCubic; loop: true; delay: 400;"
-          ></a-plane>
-          <a-plane
-            color="#3F51B5"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: -0.4 1 0.4; dur: 1100; easing: easeOutCubic; loop: true; delay: 600;"
-          ></a-plane>
-          <a-plane
-            color="#FFEB3B"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0 1 0.5; dur: 1200; easing: easeOutCubic; loop: true; delay: 800;"
-          ></a-plane>
-        </a-entity> -->
-
           <a-image
             visible="false"
             id="more-button"
@@ -301,7 +290,14 @@
     </div>
 
     <script>
+      // window.addEventListener("click", () => {
+      //   const video = document.querySelector("#card-video");
+      //   if (video && video.paused) {
+      //     video.play();
+      //   }
+      // });
       let areIconsVisible = false; // Track the visibility state of icons
+      let isProcessing = false; // Flag to prevent multiple clicks while processing
 
       const showSocialIcons = () => {
         const icons = [
@@ -329,7 +325,7 @@
             const el = document.querySelector("#" + icon.id);
             el.setAttribute("position", `${x} ${icon.y} -0.1`);
           });
-        }, 50);
+        }, 20);
       };
 
       const hideSocialIcons = () => {
@@ -358,7 +354,7 @@
             const el = document.querySelector("#" + icon.id);
             el.setAttribute("position", `${x} ${icon.y} -0.1`);
           });
-        }, 50);
+        }, 20);
       };
 
       const showInfo = () => {
@@ -384,12 +380,21 @@
         });
 
         moreButton.addEventListener("click", function (evt) {
-          // if (areIconsVisible) {
-          //   hideSocialIcons(); // Hide the icons if they're currently visible
-          // } else {
-          //   showSocialIcons(); // Show the icons if they're currently hidden
-          // }
-          // areIconsVisible = !areIconsVisible; // Toggle the visibility state
+          if (isProcessing) return; // If already processing, ignore the click
+
+          isProcessing = true; // Start processing
+
+          if (areIconsVisible) {
+            hideSocialIcons(); // Hide the icons if they're currently visible
+          } else {
+            showSocialIcons(); // Show the icons if they're currently hidden
+          }
+
+          areIconsVisible = !areIconsVisible; // Toggle the visibility state
+
+          setTimeout(function () {
+            isProcessing = false; // After the delay, allow the next click
+          }, 1000); // 1000 milliseconds = 1 second delay (adjust as needed)
         }); // This ensures it's triggered only once
 
         linktreeButton.addEventListener("click", function (evt) {
@@ -406,7 +411,10 @@
         const youtubeButton = document.querySelector("#youtube-button");
 
         instaButton.addEventListener("click", function (evt) {
-          window.open("https://instagram.com/@bike.muenchen", "_blank"); // Open link in a new tab
+          window.open(
+            "https://www.instagram.com/bike.muenchen?igsh=aHhuNnZhZHE1bG85",
+            "_blank"
+          ); // Open link in a new tab
         });
         tiktokButton.addEventListener("click", function (evt) {
           window.open("https://www.tiktok.com/@bike_muenchen", "_blank"); // Open link in a new tab
@@ -476,11 +484,12 @@
 
       AFRAME.registerComponent("mytarget", {
         init: function () {
-          // this.hasShownInfo = false;
+          const gif = document.querySelector("#gif-display");
           this.el.addEventListener("targetFound", (event) => {
             console.log("target found");
-            // if (!this.hasShownInfo) {
-            //   this.hasShownInfo = false;
+            // Ensure video is ready to play
+            gif.setAttribute("visible", true);
+            // video.play();
             showInfo();
             const instaButton = document.querySelector("#insta-button");
             const tiktokButton = document.querySelector("#tiktok-button");
@@ -492,37 +501,17 @@
             const youtubeVisible =
               youtubeButton.getAttribute("visible") === "true";
 
-            // if (instaVisible && tiktokVisible && youtubeVisible) {
-            showSocialIcons();
             Social_link_handler();
-
-            // }
-
-            // setTimeout(() => {
-            //   showSocialIcons();
-            // }, 300);
-            // }
-            // const moreButton = document.querySelector("#more-button");
-            // moreButton.setAttribute("visible", true);
-            // moreButton.addEventListener("click", function (evt) {
-            //   moreButton.addEventListener("click", () => {
-            //     showSocialIcons();
-            //   });
           });
+
           this.el.addEventListener("targetLost", (event) => {
             console.log("target lost");
+            gif.setAttribute("visible", false);
           });
         },
       });
 
-      const cardHeight = 0.552;
-      const planeHeight = 0.552;
-      const planeY = cardHeight / 2 + planeHeight / 2;
-
-      // Select the dynamic plane element by ID and set its position
-      document
-        .querySelector("#dynamic-plane")
-        .setAttribute("position", `0 ${planeY + 0.05} 0.001`);
+     
     </script>
   </body>
 </html>
