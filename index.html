@@ -303,6 +303,8 @@
 
     <script>
       let areIconsVisible = false; // Track the visibility state of icons
+      let isProcessing = false; // Flag to prevent multiple clicks while processing
+
 
       const showSocialIcons = () => {
         const icons = [
