@@ -1,3 +1,5 @@
+<!-- Working Card  -->
+
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -103,19 +105,6 @@
         device-orientation-permission-ui="enabled: false"
       >
         <a-assets>
-          <video
-            id="card-video"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/BM%20LOGO%20ANIMATION%202.mp4?v=1748882372814"
-            preload="auto"
-            autoplay="true"
-            loop
-            playsinline
-            crossorigin="anonymous"
-            webkit-playsinline
-            muted
-          ></video>
-        </a-assets>
-        <a-assets>
           <img
             id="card"
             src="https://cdn.glitch.global/d08d52de-3a01-462e-addd-8feee0ed1acc/CardFront.jpg?v=1744463838871"
@@ -136,44 +125,21 @@
             id="icon-email"
             src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/Mail.png?v=1745598716336"
           />
-
-          <img
-            id="icon-tiktok"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/Tiktok.png?v=1745598720031"
-          />
-
-          <img
-            id="icon-more"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/More.png?v=1745598718268"
-          />
-
-          <img
-            id="icon-youtube"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/Youtube.png?v=1745603571708"
-          />
-          <img
-            id="icon-left"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/left.png?v=1745755923957"
-          />
-          <img
-            id="icon-right"
-            src="https://cdn.glitch.global/930d6bb3-bd57-432d-8178-72882833879d/right.png?v=1745755928070"
-          />
         </a-assets>
 
-        <a-camera
-          position="0 0 0"
-          look-controls="enabled: false"
-          cursor="fuse: false; rayOrigin: mouse;"
-          raycaster="far: 10000; objects: .clickable"
-        >
-        </a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-entity
+          cursor="rayOrigin: mouse"
+          raycaster="objects: .clickable"
+        ></a-entity>
 
         <a-entity id="mytarget" mytarget mindar-image-target="targetIndex: 0">
+          <!-- Business card plane -->
           <a-plane
-            id="card-plane"
             src="#card"
-            position="0 0 0.1"
+            position="0 0 0"
+            height="0.552"
+            width="1"
             rotation="0 0 0"
           ></a-plane>
 
@@ -185,46 +151,64 @@
             rotation="0 0 0"
             dashed-border="color: #00FFAA"
           ></a-plane>
+<!--           <a-plane
+            id="dynamic-plane"
+            position="0 0.326 0.001"
+            width="1"
+            height="0.552"
+            material="color: #0000FF; opacity: 1"
+          ></a-plane> -->
+          
           <a-image
-            visible="false"
-            id="more-button"
-            class="clickable"
-            src="#icon-more"
-            position="0.42 -0.45 0"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+            id="dynamic-plane"
+            src="#card"
+            position="0 0.326 0.001"
+            height="0.552"
+            width="1"
+            material= "opacity: 1"
           ></a-image>
 
-          <a-image
-            visible="false"
-            id="youtube-button"
-            class="clickable"
-            src="#icon-youtube"
-            position="0.55 -0.1 -0.1"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          ></a-image>
+          <!-- firecracker animation -->
 
-          <a-image
-            visible="false"
-            id="tiktok-button"
-            class="clickable"
-            src="#icon-tiktok"
-            alpha-test="0.5"
-            position="0.55 -0.21 -0.1"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          ></a-image>
+          <!--         <a-entity id="confetti" position="0 0.1 0">
+          <a-plane
+            color="#FFC107"
+            width="0.02"
+            height="0.05"
+            animation="property: position; to: -0.3 1 -0.1; dur: 800; easing: easeOutCubic; loop: true; delay: 0;"
+          ></a-plane>
+          <a-plane
+            color="#FF4081"
+            width="0.02"
+            height="0.05"
+            animation="property: position; to: 0.4 1 -0.2; dur: 900; easing: easeOutCubic; loop: true; delay: 200;"
+          ></a-plane>
+          <a-plane
+            color="#4CAF50"
+            width="0.02"
+            height="0.05"
+            animation="property: position; to: 0.2 1 0.3; dur: 1000; easing: easeOutCubic; loop: true; delay: 400;"
+          ></a-plane>
+          <a-plane
+            color="#3F51B5"
+            width="0.02"
+            height="0.05"
+            animation="property: position; to: -0.4 1 0.4; dur: 1100; easing: easeOutCubic; loop: true; delay: 600;"
+          ></a-plane>
+          <a-plane
+            color="#FFEB3B"
+            width="0.02"
+            height="0.05"
+            animation="property: position; to: 0 1 0.5; dur: 1200; easing: easeOutCubic; loop: true; delay: 800;"
+          ></a-plane>
+        </a-entity> -->
 
           <a-image
             visible="false"
             id="insta-button"
             class="clickable"
             src="#icon-insta"
-            position="0.55 0.19 -0.1"
+            position="-0.42 -0.5 0"
             height="0.15"
             width="0.15"
             animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
@@ -236,7 +220,7 @@
             class="clickable"
             src="#icon-web"
             alpha-test="0.5"
-            position="-0.42 -0.45 0"
+            position="-0.14 -0.5 0"
             height="0.15"
             width="0.15"
             animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
@@ -247,7 +231,7 @@
             id="email-button"
             class="clickable"
             src="#icon-email"
-            position="-0.14 -0.45 0"
+            position="0.14 -0.5 0"
             height="0.15"
             width="0.15"
             animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
@@ -258,7 +242,7 @@
             id="linktree-button"
             class="clickable"
             src="#icon-linktree"
-            position="0.14 -0.45 0"
+            position="0.42 -0.5 0"
             height="0.15"
             width="0.15"
             animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
@@ -268,162 +252,41 @@
     </div>
 
     <script>
-      // Match video plane and border plane sizes
-      const videoEl = document.querySelector("#card-video");
-      const cardPlane = document.querySelector("#card-plane");
-
-      videoEl.addEventListener("loadedmetadata", () => {
-        const videoWidth = videoEl.videoWidth;
-        const videoHeight = videoEl.videoHeight;
-
-        const planeWidth = 1; // Base width
-        const planeHeight = (videoHeight / videoWidth) * planeWidth;
-
-        // Set video plane size
-        cardPlane.setAttribute("width", planeWidth);
-        cardPlane.setAttribute("height", planeHeight);
-
-        videoEl.pause(); // Play after metadata loaded
-      });
-
-      function playVideo() {
-        if (!video) return;
-        video.currentTime = 0;
-        video.play().catch((error) => {
-          console.error("Error playing video:", error);
-        });
-      }
-
-      function pauseVideo() {
-        if (!video) return;
-        video.pause();
-      }
-
-      let areIconsVisible = false; // Track the visibility state of icons
-      let isProcessing = false; // Flag to prevent multiple clicks while processing
-
-      const showSocialIcons = () => {
-        const icons = [
-          { id: "youtube-button", y: 0 },
-          { id: "tiktok-button", y: -0.21 },
-          { id: "insta-button", y: 0.19 },
-        ];
-
-        let x = 0.33;
-        const targetX = 0.67;
-
-        // Make icons visible before animating
-        icons.forEach((icon) => {
-          document.querySelector("#" + icon.id).setAttribute("visible", true);
-        });
-
-        const interval = setInterval(() => {
-          x += 0.02;
-          if (x >= targetX) {
-            x = targetX;
-            clearInterval(interval);
-          }
-
-          icons.forEach((icon) => {
-            const el = document.querySelector("#" + icon.id);
-            el.setAttribute("position", `${x} ${icon.y} -0.1`);
-          });
-        }, 20);
-      };
-
-      const hideSocialIcons = () => {
-        const icons = [
-          { id: "youtube-button", y: 0 },
-          { id: "tiktok-button", y: -0.21 },
-          { id: "insta-button", y: 0.19 },
-        ];
-
-        let x = 0.67;
-        const targetX = 0.33;
-
-        const interval = setInterval(() => {
-          x -= 0.02;
-          if (x <= targetX) {
-            x = targetX;
-            clearInterval(interval);
-            // Make icons invisible after animation
-            icons.forEach((icon) => {
-              const el = document.querySelector("#" + icon.id);
-              el.setAttribute("visible", false);
-            });
-          }
-
-          icons.forEach((icon) => {
-            const el = document.querySelector("#" + icon.id);
-            el.setAttribute("position", `${x} ${icon.y} -0.1`);
-          });
-        }, 20);
-      };
-
       const showInfo = () => {
         let currentTab = ""; // Tracks which button was clicked
 
-        const moreButton = document.querySelector("#more-button");
+        const instaButton = document.querySelector("#insta-button");
         const webButton = document.querySelector("#web-button");
         const emailButton = document.querySelector("#email-button");
         const linktreeButton = document.querySelector("#linktree-button");
 
         // Make all buttons visible at once (no delay)
-        moreButton.setAttribute("visible", true);
+        instaButton.setAttribute("visible", true);
         webButton.setAttribute("visible", true);
         emailButton.setAttribute("visible", true);
         linktreeButton.setAttribute("visible", true);
 
-        webButton.addEventListener("click", function (evt) {
+        // Event listeners for each button
+        webButton.addEventListener("click", function () {
           window.open("https://bikemuenchen.com/", "_blank"); // Open link in a new tab
         });
 
-        emailButton.addEventListener("click", function (evt) {
+        emailButton.addEventListener("click", function () {
           window.location.href = "mailto:info@bikemuenchen.com"; // Open email client
         });
 
-        moreButton.addEventListener("click", function (evt) {
-          if (isProcessing) return; // If already processing, ignore the click
-
-          isProcessing = true; // Start processing
-
-          if (areIconsVisible) {
-            hideSocialIcons(); // Hide the icons if they're currently visible
-          } else {
-            showSocialIcons(); // Show the icons if they're currently hidden
-          }
-
-          areIconsVisible = !areIconsVisible; // Toggle the visibility state
-
-          setTimeout(function () {
-            isProcessing = false; // After the delay, allow the next click
-          }, 1000); // 1000 milliseconds = 1 second delay (adjust as needed)
-        }); // This ensures it's triggered only once
-
-        linktreeButton.addEventListener("click", function (evt) {
-          window.open(
-            "https://linktr.ee/bike.muenchen?utm_source=linktree_profile_share&ltsid=99a45ee1-5c56-4403-a50f-54376d3388b8",
-            "_blank"
-          ); // Open link in a new tab
-        });
-      };
-
-      const Social_link_handler = () => {
-        const instaButton = document.querySelector("#insta-button");
-        const tiktokButton = document.querySelector("#tiktok-button");
-        const youtubeButton = document.querySelector("#youtube-button");
-
-        instaButton.addEventListener("click", function (evt) {
+        instaButton.addEventListener("click", function () {
           window.open(
             "https://www.instagram.com/bike.muenchen?igsh=aHhuNnZhZHE1bG85",
             "_blank"
           ); // Open link in a new tab
         });
-        tiktokButton.addEventListener("click", function (evt) {
-          window.open("https://www.tiktok.com/@bike_muenchen", "_blank"); // Open link in a new tab
-        });
-        youtubeButton.addEventListener("click", function (evt) {
-          window.open("https://www.youtube.com/@bike.munchen", "_blank"); // Open link in a new tab
+
+        linktreeButton.addEventListener("click", function () {
+          window.open(
+            "https://linktr.ee/bike.muenchen?utm_source=linktree_profile_share&ltsid=99a45ee1-5c56-4403-a50f-54376d3388b8",
+            "_blank"
+          ); // Open link in a new tab
         });
       };
 
@@ -438,41 +301,41 @@
               color: { value: new THREE.Color(this.data.color) },
             },
             vertexShader: `
-                          varying vec2 vUv;
-                          void main() {
-                            vUv = uv;
-                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                          }
-                        `,
-            fragmentShader: `
-              uniform float time;
-              uniform vec3 color;
               varying vec2 vUv;
               void main() {
-                float borderThickness = 0.02;
-                float dashedSize = 0.05;
-                float gap = 0.05;
-                float u = vUv.x;
-                float v = vUv.y;
-
-                bool isBorder = u < borderThickness || u > 1.0 - borderThickness || v < borderThickness || v > 1.0 - borderThickness;
-
-                if (isBorder) {
-                  float offset = mod((u + v + time * 0.2), (dashedSize + gap) * 2.0);
-                  if (offset < dashedSize) {
-                    gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0);  // Orange
-                  } else if (offset < dashedSize + gap) {
-                    discard;  // gap
-                  } else if (offset < 2.0 * dashedSize + gap) {
-                    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);  // White
-                  } else {
-                    discard;  // gap
-                  }
-                } else {
-                  discard;
-                }
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
               }
             `,
+            fragmentShader: `
+  uniform float time;
+  uniform vec3 color;
+  varying vec2 vUv;
+  void main() {
+    float borderThickness = 0.02;
+    float dashedSize = 0.05;
+    float gap = 0.05;
+    float u = vUv.x;
+    float v = vUv.y;
+
+    bool isBorder = u < borderThickness || u > 1.0 - borderThickness || v < borderThickness || v > 1.0 - borderThickness;
+
+    if (isBorder) {
+      float offset = mod((u + v + time * 0.2), (dashedSize + gap) * 2.0);
+      if (offset < dashedSize) {
+        gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0);  // Orange
+      } else if (offset < dashedSize + gap) {
+        discard;  // gap
+      } else if (offset < 2.0 * dashedSize + gap) {
+        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);  // White
+      } else {
+        discard;  // gap
+      }
+    } else {
+      discard;
+    }
+  }
+`,
             transparent: true,
           });
           this.material = material;
@@ -487,33 +350,24 @@
 
       AFRAME.registerComponent("mytarget", {
         init: function () {
-          // this.hasShownInfo = false;
-          //const videoEl = document.querySelector("#card-video");
           this.el.addEventListener("targetFound", (event) => {
             console.log("target found");
-
             showInfo();
-            const instaButton = document.querySelector("#insta-button");
-            const tiktokButton = document.querySelector("#tiktok-button");
-            const youtubeButton = document.querySelector("#youtube-button");
-
-            const instaVisible = instaButton.getAttribute("visible") === "true";
-            const tiktokVisible =
-              tiktokButton.getAttribute("visible") === "true";
-            const youtubeVisible =
-              youtubeButton.getAttribute("visible") === "true";
-
-            // if (instaVisible && tiktokVisible && youtubeVisible) {
-            //videoEl.play();
-            Social_link_handler();
           });
-
           this.el.addEventListener("targetLost", (event) => {
             console.log("target lost");
-            videoEl.pause();
           });
         },
       });
+
+      const cardHeight = 0.552;
+      const planeHeight = 0.552;
+      const planeY = (cardHeight / 2) + (planeHeight / 2);
+
+      // Select the dynamic plane element by ID and set its position
+      document
+        .querySelector("#dynamic-plane")
+        .setAttribute("position", `0 ${planeY+0.05} 0.001`);
     </script>
   </body>
 </html>
