@@ -174,14 +174,15 @@
             material="color: #0000FF; opacity: 1"
           ></a-plane> -->
 
-          <a-image
+          <!-- This is working dynamic plan for blog view -->
+          <!-- <a-image
             id="dynamic-plane"
             src="#card"
             position="0 0.326 0.001"
             height="0.552"
             width="1"
             material="opacity: 1"
-          ></a-image>
+          ></a-image> -->
 
           <!-- firecracker animation -->
 
@@ -329,7 +330,7 @@
             const el = document.querySelector("#" + icon.id);
             el.setAttribute("position", `${x} ${icon.y} -0.1`);
           });
-        }, 50);
+        }, 20);
       };
 
       const hideSocialIcons = () => {
@@ -358,7 +359,7 @@
             const el = document.querySelector("#" + icon.id);
             el.setAttribute("position", `${x} ${icon.y} -0.1`);
           });
-        }, 50);
+        }, 20);
       };
 
       const showInfo = () => {
@@ -384,12 +385,22 @@
         });
 
         moreButton.addEventListener("click", function (evt) {
-          // if (areIconsVisible) {
-          //   hideSocialIcons(); // Hide the icons if they're currently visible
-          // } else {
-          //   showSocialIcons(); // Show the icons if they're currently hidden
-          // }
-          // areIconsVisible = !areIconsVisible; // Toggle the visibility state
+            if (isProcessing) return; // If already processing, ignore the click
+
+          isProcessing = true; // Start processing
+
+          if (areIconsVisible) {
+            hideSocialIcons(); // Hide the icons if they're currently visible
+          } else {
+            showSocialIcons(); // Show the icons if they're currently hidden
+          }
+
+          areIconsVisible = !areIconsVisible; // Toggle the visibility state
+
+          setTimeout(function () {
+            isProcessing = false; // After the delay, allow the next click
+          }, 1000); // 1000 milliseconds = 1 second delay (adjust as needed)
+       
         }); // This ensures it's triggered only once
 
         linktreeButton.addEventListener("click", function (evt) {
@@ -406,7 +417,10 @@
         const youtubeButton = document.querySelector("#youtube-button");
 
         instaButton.addEventListener("click", function (evt) {
-          window.open("https://instagram.com/@bike.muenchen", "_blank"); // Open link in a new tab
+          window.open(
+            "https://www.instagram.com/bike.muenchen?igsh=aHhuNnZhZHE1bG85",
+            "_blank"
+          );  // Open link in a new tab
         });
         tiktokButton.addEventListener("click", function (evt) {
           window.open("https://www.tiktok.com/@bike_muenchen", "_blank"); // Open link in a new tab
@@ -515,14 +529,14 @@
         },
       });
 
-      const cardHeight = 0.552;
-      const planeHeight = 0.552;
-      const planeY = cardHeight / 2 + planeHeight / 2;
+      // const cardHeight = 0.552;
+      // const planeHeight = 0.552;
+      // const planeY = cardHeight / 2 + planeHeight / 2;
 
-      // Select the dynamic plane element by ID and set its position
-      document
-        .querySelector("#dynamic-plane")
-        .setAttribute("position", `0 ${planeY + 0.05} 0.001`);
+      // // Select the dynamic plane element by ID and set its position
+      // document
+      //   .querySelector("#dynamic-plane")
+      //   .setAttribute("position", `0 ${planeY + 0.05} 0.001`);
     </script>
   </body>
 </html>
