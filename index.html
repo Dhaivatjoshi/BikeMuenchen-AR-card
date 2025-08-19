@@ -166,13 +166,6 @@
             rotation="0 0 0"
             dashed-border="color: #00FFAA"
           ></a-plane>
-          <!--           <a-plane
-            id="dynamic-plane"
-            position="0 0.326 0.001"
-            width="1"
-            height="0.552"
-            material="color: #0000FF; opacity: 1"
-          ></a-plane> -->
 
           <!-- This is working dynamic plan for blog view -->
           <!-- <a-image
@@ -183,41 +176,6 @@
             width="1"
             material="opacity: 1"
           ></a-image> -->
-
-          <!-- firecracker animation -->
-
-          <!--         <a-entity id="confetti" position="0 0.1 0">
-          <a-plane
-            color="#FFC107"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: -0.3 1 -0.1; dur: 800; easing: easeOutCubic; loop: true; delay: 0;"
-          ></a-plane>
-          <a-plane
-            color="#FF4081"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0.4 1 -0.2; dur: 900; easing: easeOutCubic; loop: true; delay: 200;"
-          ></a-plane>
-          <a-plane
-            color="#4CAF50"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0.2 1 0.3; dur: 1000; easing: easeOutCubic; loop: true; delay: 400;"
-          ></a-plane>
-          <a-plane
-            color="#3F51B5"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: -0.4 1 0.4; dur: 1100; easing: easeOutCubic; loop: true; delay: 600;"
-          ></a-plane>
-          <a-plane
-            color="#FFEB3B"
-            width="0.02"
-            height="0.05"
-            animation="property: position; to: 0 1 0.5; dur: 1200; easing: easeOutCubic; loop: true; delay: 800;"
-          ></a-plane>
-        </a-entity> -->
 
           <a-image
             visible="false"
@@ -303,7 +261,7 @@
 
     <script>
       let areIconsVisible = true; // Track the visibility state of icons
-      let isProcessing = false; // Flag to prevent multiple clicks while processing
+      let isProcessing = false;   // Flag to prevent multiple clicks while processing
 
 
       const showSocialIcons = () => {
@@ -389,27 +347,26 @@
         moreButton.addEventListener("click", function (evt) {
             if (isProcessing) return; // If already processing, ignore the click
 
-          isProcessing = true; // Start processing
-
+          isProcessing = true; 
           if (areIconsVisible) {
             hideSocialIcons(); // Hide the icons if they're currently visible
           } else {
             showSocialIcons(); // Show the icons if they're currently hidden
           }
 
-          areIconsVisible = !areIconsVisible; // Toggle the visibility state
+          areIconsVisible = !areIconsVisible; // Toggle visibility state
 
           setTimeout(function () {
             isProcessing = false; // After the delay, allow the next click
-          }, 500); // 1000 milliseconds = 1 second delay (adjust as needed)
+          }, 500); // 500 milliseconds = 0.5 second delay (adjust as needed)
        
-        }); // This ensures it's triggered only once
+        }); 
 
         linktreeButton.addEventListener("click", function (evt) {
           window.open(
             "https://linktr.ee/bike.muenchen?utm_source=linktree_profile_share&ltsid=99a45ee1-5c56-4403-a50f-54376d3388b8",
             "_blank"
-          ); // Open link in a new tab
+          ); 
         });
       };
 
@@ -417,18 +374,18 @@
         const instaButton = document.querySelector("#insta-button");
         const tiktokButton = document.querySelector("#tiktok-button");
         const youtubeButton = document.querySelector("#youtube-button");
+         // all links Open in a new tab
 
         instaButton.addEventListener("click", function (evt) {
           window.open(
             "https://www.instagram.com/bike.muenchen?igsh=aHhuNnZhZHE1bG85",
             "_blank"
-          );  // Open link in a new tab
+          ); 
         });
         tiktokButton.addEventListener("click", function (evt) {
-          window.open("https://www.tiktok.com/@bike_muenchen", "_blank"); // Open link in a new tab
-        });
+          window.open("https://www.tiktok.com/@bike_muenchen", "_blank"); 
         youtubeButton.addEventListener("click", function (evt) {
-          window.open("https://www.youtube.com/@bike.munchen", "_blank"); // Open link in a new tab
+          window.open("https://www.youtube.com/@bike.munchen", "_blank"); 
         });
       };
 
@@ -492,11 +449,9 @@
 
       AFRAME.registerComponent("mytarget", {
         init: function () {
-          // this.hasShownInfo = false;
           this.el.addEventListener("targetFound", (event) => {
             console.log("target found");
-            // if (!this.hasShownInfo) {
-            //   this.hasShownInfo = false;
+ 
             showInfo();
             const instaButton = document.querySelector("#insta-button");
             const tiktokButton = document.querySelector("#tiktok-button");
@@ -508,22 +463,8 @@
             const youtubeVisible =
               youtubeButton.getAttribute("visible") === "true";
 
-            // if (instaVisible && tiktokVisible && youtubeVisible) {
             showSocialIcons();
             Social_link_handler();
-
-            // }
-
-            // setTimeout(() => {
-            //   showSocialIcons();
-            // }, 300);
-            // }
-            // const moreButton = document.querySelector("#more-button");
-            // moreButton.setAttribute("visible", true);
-            // moreButton.addEventListener("click", function (evt) {
-            //   moreButton.addEventListener("click", () => {
-            //     showSocialIcons();
-            //   });
           });
           this.el.addEventListener("targetLost", (event) => {
             console.log("target lost");
